@@ -1,13 +1,10 @@
 
 
+
+
 <div class="counter-container">
   Counter Application
-  <div class="counter-view">{{counter}}</div>
-  <button>
-    Increment
-  </button>
-  <button>
-    Decrement
-  </button>
+  <app-counter-view [counterView]="counter"></app-counter-view>
+  <app-counter-controler></app-counter-controler>
 </div>
 
