@@ -12,7 +12,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class CounterComponent {
   counter = 0;
 
-  incrementCounter(num) {
+  incrementCounter(num: number) {
     this.counter += num;
   }
 }
