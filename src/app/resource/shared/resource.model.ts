@@ -14,8 +14,4 @@ export class Resource {
     this.link = link;
     this.type = type;
   }
-
-  alertResource() {
-    window.alert('Resource was alerted!');
-  }
 }

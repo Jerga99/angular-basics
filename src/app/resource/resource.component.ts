@@ -39,11 +39,12 @@ export class ResourceComponent {
       type: 'video'
     })
 
-    const newResource2 = new Resource();
-    newResource2.alertResource()
-
     this.resources.unshift(newResource);
     return this.resources;
+  }
+
+  get resourcesCount(): number {
+    return this.resources.length;
   }
 }
 
