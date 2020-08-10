@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Resource } from '../../shared/resource.model';
 
 @Component({
   selector: 'app-resource-list',
@@ -6,10 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./resource-list.component.scss']
 })
 export class ResourceListComponent  {
-  @Input() resources: [{_id: string, title: string, description: string}];
+  @Input() resources: [Resource];
 
   get jsonResources() {
-    this.resources[0].title;
     return JSON.stringify(this.resources);
   }
 }
