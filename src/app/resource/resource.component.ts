@@ -8,42 +8,39 @@ import { Resource } from './shared/resource.model';
 })
 export class ResourceComponent {
 
-  public resources = [{
+  public resources = [new Resource({
     _id: '1',
     title: 'Resource 1',
     description: 'Resource desc 1',
     link: 'https://google.com',
     type: 'video'
-  },{
+  }),new Resource({
     _id: '2',
     title: 'Resource 2',
     description: 'Resource desc 2',
     link: 'https://google.com',
     type: 'blog'
-  },{
+  }),new Resource({
     _id: '3',
     title: 'Resource 3',
     description: 'Resource desc 3',
     link: 'https://google.com',
-    type: 'book'
-  },
-  {
-    _id: '4',
-    title: 'Resource 4',
-    description: 'Resource desc 4',
-    link: 'https://google.com',
-    type: 'book'
-  }]
+    type: 'video'
+  }),
+  ]
 
   public addResource(): Resource[] {
     const _id = '_' + Math.random().toString(36).substr(2, 9);
-    const newResource = {
+    const newResource = new Resource({
       _id,
       title: `Title ${_id}`,
       description: `Description ${_id}`,
       link: `link ${_id}`,
       type: 'video'
-    }
+    })
+
+    const newResource2 = new Resource();
+    newResource2.alertResource()
 
     this.resources.unshift(newResource);
     return this.resources;

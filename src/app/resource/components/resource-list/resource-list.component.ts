@@ -7,7 +7,7 @@ import { Resource } from '../../shared/resource.model';
   styleUrls: ['./resource-list.component.scss']
 })
 export class ResourceListComponent  {
-  @Input() resources: [Resource];
+  @Input() resources: Resource[];
 
   get jsonResources() {
     return JSON.stringify(this.resources);
