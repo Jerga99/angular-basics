@@ -8,6 +8,7 @@ import { Resource } from '../../shared/resource.model';
 })
 export class ResourceListComponent  {
   @Input() resources: Resource[];
+  @Input() activeId: string;
   @Output() onResourceClick = new EventEmitter<Resource>();
 
   get jsonResources() {

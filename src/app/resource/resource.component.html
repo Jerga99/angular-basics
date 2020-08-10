@@ -8,6 +8,7 @@
     <app-resource-search></app-resource-search>
     <app-resource-list
       (onResourceClick)="handleResourceSelect($event)"
+      [activeId]="activeResource?._id"
       [resources]="resources"></app-resource-list>
     <button
       (click)="addResource()"

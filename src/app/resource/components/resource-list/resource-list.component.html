@@ -4,7 +4,8 @@
   <li
     *ngFor="let resource of resources"
     (click)="handleResourceSelect(resource)"
-    class="list-group-item d-flex justify-content-between lh-condensed">
+    [ngClass]="{'is-active': activeId === resource._id}"
+    class="list-group-item resource-list-item d-flex justify-content-between lh-condensed">
     <div>
       <h6 class="my-0">{{resource.title}}</h6>
       <small class="text-muted">{{resource.description}}</small>
