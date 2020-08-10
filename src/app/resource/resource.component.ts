@@ -25,6 +25,13 @@ export class ResourceComponent {
     description: 'Resource desc 3',
     link: 'https://google.com',
     type: 'book'
+  },
+  {
+    _id: '4',
+    title: 'Resource 4',
+    description: 'Resource desc 4',
+    link: 'https://google.com',
+    type: 'book'
   }]
 }
 
