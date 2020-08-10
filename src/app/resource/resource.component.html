@@ -7,6 +7,9 @@
     </h4>
     <app-resource-search></app-resource-search>
     <app-resource-list [resources]="resources"></app-resource-list>
+    <button
+      (click)="addResource()"
+      class="btn btn-primary">Add Resource</button>
   </div>
   <!-- {/* Update Form Starts */} -->
   <div class="col-md-8 order-md-1">

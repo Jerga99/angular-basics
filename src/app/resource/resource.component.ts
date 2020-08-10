@@ -1,5 +1,6 @@
 
 import { Component } from '@angular/core';
+import { Resource } from './shared/resource.model';
 
 @Component({
   selector: 'app-resource',
@@ -33,5 +34,19 @@ export class ResourceComponent {
     link: 'https://google.com',
     type: 'book'
   }]
+
+  public addResource(): Resource[] {
+    const _id = '_' + Math.random().toString(36).substr(2, 9);
+    const newResource = {
+      _id,
+      title: `Title ${_id}`,
+      description: `Description ${_id}`,
+      link: `link ${_id}`,
+      type: 'video'
+    }
+
+    this.resources.unshift(newResource);
+    return this.resources;
+  }
 }
 
