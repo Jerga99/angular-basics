@@ -1,5 +1,5 @@
 
-<div *ngIf="!resource || !resource?._id; else detailView" class="card">
+<div *ngIf="!resource?._id; else detailView" class="card">
   <div class="card-body">
     No resource selected :(
   </div>

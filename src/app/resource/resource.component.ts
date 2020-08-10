@@ -32,7 +32,7 @@ export class ResourceComponent {
   ]
 
   private selectResource(resource: Resource): Resource {
-    if (!resource || !resource?._id) {
+    if (!resource?._id) {
       this.selectResource = null;
       return null;
     }
@@ -61,6 +61,14 @@ export class ResourceComponent {
 
   public handleResourceSelect(resource: Resource) {
     this.selectResource(resource);
+  }
+
+  get hasResources(): boolean {
+    return this.resources && this.resourcesCount > 0;
+  }
+
+  get activeResource(): Resource {
+    return (this.selectedResource || (this.hasResources && this.resources[0])) || null;
   }
 
   get resourcesCount(): number {
