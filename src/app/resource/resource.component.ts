@@ -8,6 +8,7 @@ import { Resource } from './shared/resource.model';
 })
 export class ResourceComponent {
 
+  public isDetailView = true;
   public resources = [new Resource({
     _id: '1',
     title: 'Resource 1',
@@ -41,6 +42,10 @@ export class ResourceComponent {
 
     this.resources.unshift(newResource);
     return this.resources;
+  }
+
+  public toggleView() {
+    this.isDetailView = !this.isDetailView;
   }
 
   get resourcesCount(): number {

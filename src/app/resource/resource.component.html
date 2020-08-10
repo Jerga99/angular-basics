@@ -13,8 +13,15 @@
   </div>
   <!-- {/* Update Form Starts */} -->
   <div class="col-md-8 order-md-1">
-    <!-- <app-resource-update></app-resource-update> -->
-    <app-resource-detail></app-resource-detail>
+    <h4 class="mb-3">Resource View
+      <button
+        (click)="toggleView()"
+        class="btn btn-primary btn-sm">Toggle View</button>
+    </h4>
+    <app-resource-detail *ngIf="isDetailView; else updateView"></app-resource-detail>
+    <ng-template #updateView>
+      <app-resource-update></app-resource-update>
+    </ng-template>
   </div>
 </div>
 
