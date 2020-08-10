@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Resource } from '../../shared/resource.model';
 
 @Component({
@@ -8,8 +8,13 @@ import { Resource } from '../../shared/resource.model';
 })
 export class ResourceListComponent  {
   @Input() resources: Resource[];
+  @Output() onResourceClick = new EventEmitter<Resource>();
 
   get jsonResources() {
     return JSON.stringify(this.resources);
+  }
+
+  handleResourceSelect(resource: Resource) {
+    this.onResourceClick.next(resource);
   }
 }

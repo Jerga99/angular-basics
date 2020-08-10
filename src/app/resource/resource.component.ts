@@ -8,6 +8,7 @@ import { Resource } from './shared/resource.model';
 })
 export class ResourceComponent {
 
+  public selectedResource: Resource;
   public isDetailView = true;
   public resources = [new Resource({
     _id: '1',
@@ -46,6 +47,11 @@ export class ResourceComponent {
 
   public toggleView() {
     this.isDetailView = !this.isDetailView;
+  }
+
+  public handleResourceSelect(resource: Resource) {
+    this.selectedResource = {...resource};
+    alert(JSON.stringify(this.selectedResource));
   }
 
   get resourcesCount(): number {
