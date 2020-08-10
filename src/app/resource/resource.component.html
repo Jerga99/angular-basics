@@ -16,7 +16,8 @@
     <h4 class="mb-3">Resource View
       <button
         (click)="toggleView()"
-        class="btn btn-primary btn-sm">Toggle View</button>
+        [ngClass]="btnViewClass"
+        class="btn btn-sm">{{isDetailView ? 'Edit' : 'Detail'}}</button>
     </h4>
     <app-resource-detail *ngIf="isDetailView; else updateView"></app-resource-detail>
     <!-- a template reference variable, a reference to a DOM element or a directive  -->

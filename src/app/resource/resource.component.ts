@@ -51,5 +51,9 @@ export class ResourceComponent {
   get resourcesCount(): number {
     return this.resources.length;
   }
+
+  get btnViewClass(): String {
+    return this.isDetailView ? 'btn-warning' : 'btn-primary';
+  }
 }
 
