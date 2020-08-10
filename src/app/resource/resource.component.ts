@@ -31,6 +31,16 @@ export class ResourceComponent {
   }),
   ]
 
+  private selectResource(resource: Resource): Resource {
+    if (!resource || !resource?._id) {
+      this.selectResource = null;
+      return null;
+    }
+
+    this.selectedResource = {...resource};
+    return this.selectedResource;
+  }
+
   public addResource(): Resource[] {
     const _id = '_' + Math.random().toString(36).substr(2, 9);
     const newResource = new Resource({
@@ -50,8 +60,7 @@ export class ResourceComponent {
   }
 
   public handleResourceSelect(resource: Resource) {
-    this.selectedResource = {...resource};
-    alert(JSON.stringify(this.selectedResource));
+    this.selectResource(resource);
   }
 
   get resourcesCount(): number {

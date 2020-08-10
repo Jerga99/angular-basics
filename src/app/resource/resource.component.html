@@ -21,7 +21,9 @@
         [ngClass]="btnViewClass"
         class="btn btn-sm">{{isDetailView ? 'Edit' : 'Detail'}}</button>
     </h4>
-    <app-resource-detail *ngIf="isDetailView; else updateView"></app-resource-detail>
+    <app-resource-detail
+      *ngIf="isDetailView; else updateView"
+      [resource]="selectedResource"></app-resource-detail>
     <!-- a template reference variable, a reference to a DOM element or a directive  -->
     <ng-template #updateView>
       <app-resource-update></app-resource-update>
