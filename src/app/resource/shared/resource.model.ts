@@ -1,6 +1,9 @@
 
 
 export class Resource {
+
+  static readonly types = ['book', 'video', 'blog'];
+
   _id: string;
   title: string;
   description: string;

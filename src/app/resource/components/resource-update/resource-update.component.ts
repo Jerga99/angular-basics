@@ -10,6 +10,7 @@ import { Resource } from '../../shared/resource.model';
 export class ResourceUpdateComponent  {
 
   selectedResource: Resource;
+  types = Resource.types;
 
   @Input() set resource(selectedResource: Resource) {
     this.selectedResource = {...selectedResource};
