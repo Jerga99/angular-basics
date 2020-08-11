@@ -1,39 +1,27 @@
 
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Resource } from './shared/resource.model';
-
-interface TestingInterface {
-  testProp: string;
-  callMe(): number
-}
+import { ResourceService } from './shared/resource.service';
 
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html'
 })
-export class ResourceComponent implements OnInit, TestingInterface {
+export class ResourceComponent implements OnInit {
 
-  testProp = 'Hello World'
   public selectedResource: Resource;
   public isDetailView = true;
   public resources: Resource[] = [];
 
-  constructor(private http: HttpClient) {
-    // to assign just simple data to member variables
-  }
+  constructor(private resourceService: ResourceService) { }
 
   ngOnInit() {
     this.getResources();
   }
 
-  callMe(): number {
-    return 1;
-  }
-
   private getResources() {
-    this.http
-      .get('http://localhost:4200/api/resources')
+    this.resourceService
+      .getResources()
       .subscribe((resources: Resource[]) => {
         this.resources = resources;
       })
