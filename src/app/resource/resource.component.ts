@@ -19,9 +19,9 @@ export class ResourceComponent {
 
   private getResources() {
     this.http
-      .get('http://localhost:3001/api/resources')
+      .get('http://localhost:4200/api/resources')
       .subscribe((resources: Resource[]) => {
-        console.log(resources);
+        this.resources = resources;
       })
   }
 
