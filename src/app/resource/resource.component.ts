@@ -1,20 +1,34 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Resource } from './shared/resource.model';
+
+interface TestingInterface {
+  testProp: string;
+  callMe(): number
+}
 
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html'
 })
-export class ResourceComponent {
+export class ResourceComponent implements OnInit, TestingInterface {
 
+  testProp = 'Hello World'
   public selectedResource: Resource;
   public isDetailView = true;
   public resources: Resource[] = [];
 
   constructor(private http: HttpClient) {
+    // to assign just simple data to member variables
+  }
+
+  ngOnInit() {
     this.getResources();
+  }
+
+  callMe(): number {
+    return 1;
   }
 
   private getResources() {
