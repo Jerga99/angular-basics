@@ -1,6 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 import { Resource } from '../../shared/resource.model';
+import { ResourceService } from '../../shared/resource.service';
 
 @Component({
   selector: 'app-resource-update',
@@ -16,7 +17,13 @@ export class ResourceUpdateComponent  {
     this.selectedResource = {...selectedResource};
   }
 
+  constructor(private resourceService: ResourceService) {}
+
   submitForm() {
-   alert(JSON.stringify(this.selectedResource));
+    this.resourceService
+      .updateResource(this.selectedResource._id, this.selectedResource)
+      .subscribe((updatedResource) => {
+        console.log(updatedResource);
+      })
   }
 }

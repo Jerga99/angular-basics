@@ -14,4 +14,8 @@ export class ResourceService {
   getResources(): Observable<Resource[]> {
     return this.http.get<Resource[]>('/api/resources')
   }
+
+  updateResource(id: string, body: Resource): Observable<Resource> {
+    return this.http.patch<Resource>(`/api/resources/${id}`, body);
+  }
 }
