@@ -25,6 +25,7 @@
     <!-- a template reference variable, a reference to a DOM element or a directive  -->
     <ng-template #updateView>
       <app-resource-update
+        (onResourceUpdate)="hydrateResources($event)"
         [resource]="activeResource">
       </app-resource-update>
     </ng-template>

@@ -37,6 +37,12 @@ export class ResourceComponent implements OnInit {
     return this.selectedResource;
   }
 
+  public hydrateResources(resource: Resource) {
+    const index = this.resources.findIndex(r => r._id === resource._id);
+    this.resources[index] = resource;
+    this.selectResource(resource);
+  }
+
   public toggleView() {
     this.isDetailView = !this.isDetailView;
   }

@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Resource } from '../../shared/resource.model';
 import { ResourceService } from '../../shared/resource.service';
 
@@ -13,6 +13,8 @@ export class ResourceUpdateComponent  {
   selectedResource: Resource;
   types = Resource.types;
 
+  @Output() onResourceUpdate = new EventEmitter<Resource>();
+
   @Input() set resource(selectedResource: Resource) {
     this.selectedResource = {...selectedResource};
   }
@@ -22,8 +24,8 @@ export class ResourceUpdateComponent  {
   submitForm() {
     this.resourceService
       .updateResource(this.selectedResource._id, this.selectedResource)
-      .subscribe((updatedResource) => {
-        console.log(updatedResource);
+      .subscribe(updatedResource => {
+        this.onResourceUpdate.emit(updatedResource);
       })
   }
 }
