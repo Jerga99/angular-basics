@@ -9,7 +9,11 @@ import { Resource } from '../../shared/resource.model';
 })
 export class ResourceUpdateComponent  {
 
-  @Input() selectedResource: Resource;
+  selectedResource: Resource;
+
+  @Input() set resource(selectedResource: Resource) {
+    this.selectedResource = {...selectedResource};
+  }
 
   submitForm() {
    alert(JSON.stringify(this.selectedResource));
