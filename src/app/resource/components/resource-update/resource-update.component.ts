@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, Input } from '@angular/core';
+import { Resource } from '../../shared/resource.model';
 
 @Component({
   selector: 'app-resource-update',
   templateUrl: './resource-update.component.html',
   styleUrls: ['./resource-update.component.scss']
 })
-export class ResourceUpdateComponent implements OnInit {
+export class ResourceUpdateComponent  {
 
-  constructor() { }
+  @Input() selectedResource: Resource;
 
-  ngOnInit(): void {
+  submitForm() {
+   alert(JSON.stringify(this.selectedResource));
   }
-
 }

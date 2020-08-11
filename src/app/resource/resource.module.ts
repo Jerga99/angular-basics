@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ResourceComponent } from './resource.component';
 import { ResourceSearchComponent } from './components/resource-search/resource-search.component';
@@ -21,7 +22,8 @@ import { ResourceUpdateComponent } from './components/resource-update/resource-u
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class ResourceModule { }
