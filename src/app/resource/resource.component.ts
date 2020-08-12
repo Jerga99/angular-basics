@@ -3,27 +3,28 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Resource, ResourceAlert } from './shared/resource.model';
 import { ResourceService } from './shared/resource.service';
 
+import { AlertComponent } from './shared/alert.component';
+
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html'
 })
-export class ResourceComponent implements OnInit, OnDestroy {
+export class ResourceComponent extends AlertComponent implements OnInit, OnDestroy {
 
-  private timeoutId: number;
-
-  public alert: ResourceAlert;
   public selectedResource: Resource;
   public isDetailView = true;
   public resources: Resource[] = [];
 
-  constructor(private resourceService: ResourceService) { }
+  constructor(private resourceService: ResourceService) {
+    super();
+  }
 
   ngOnInit() {
     this.getResources();
   }
 
   ngOnDestroy() {
-    this.timeoutId && clearTimeout(this.timeoutId);
+    this.clearAlertTimeout();
   }
 
   private getResources() {
@@ -46,13 +47,6 @@ export class ResourceComponent implements OnInit, OnDestroy {
 
   private findResourceIndex(resource: Resource): number {
     return this.resources.findIndex(r => r._id === resource._id);
-  }
-
-  private setAlert(type: string, message: string) {
-    this.alert = new ResourceAlert;
-    this.alert[type] = message;
-
-    this.timeoutId = setTimeout(() => this.alert = new ResourceAlert(), 2000)
   }
 
   public updateResource = (resource: Resource) => {
@@ -96,7 +90,7 @@ export class ResourceComponent implements OnInit, OnDestroy {
   }
 
   public handleResourceSelect(resource: Resource) {
-    this.alert = new ResourceAlert();
+    this.clearAlertTimeout();
     this.selectResource(resource);
   }
 
