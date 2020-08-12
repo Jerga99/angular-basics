@@ -1,5 +1,5 @@
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Resource, ResourceAlert } from '../../shared/resource.model';
 import { ResourceService } from '../../shared/resource.service';
 
@@ -8,7 +8,9 @@ import { ResourceService } from '../../shared/resource.service';
   templateUrl: './resource-update.component.html',
   styleUrls: ['./resource-update.component.scss']
 })
-export class ResourceUpdateComponent  {
+export class ResourceUpdateComponent implements OnDestroy  {
+
+  private timeoutId: number;
 
   selectedResource: Resource;
   types = Resource.types;
@@ -17,16 +19,27 @@ export class ResourceUpdateComponent  {
   @Output() onResourceUpdate = new EventEmitter<Resource>();
 
   @Input() set resource(selectedResource: Resource) {
+    if (this.selectedResource && (this.selectedResource._id !== selectedResource?._id)) {
+      if (this.timeoutId) {
+        clearTimeout(this.timeoutId);
+        this.alert = new ResourceAlert();
+      }
+    }
+
     this.selectedResource = {...selectedResource};
   }
 
   constructor(private resourceService: ResourceService) {}
 
+  ngOnDestroy() {
+    this.timeoutId && clearTimeout(this.timeoutId);
+  }
+
   private setAlert(type: string, message: string) {
     this.alert = new ResourceAlert;
     this.alert[type] = message;
 
-    setTimeout(() => this.alert = new ResourceAlert(), 2000)
+    this.timeoutId = setTimeout(() => this.alert = new ResourceAlert(), 2000)
   }
 
   submitForm() {
