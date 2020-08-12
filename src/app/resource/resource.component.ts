@@ -1,14 +1,17 @@
 
-import { Component, OnInit } from '@angular/core';
-import { Resource } from './shared/resource.model';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Resource, ResourceAlert } from './shared/resource.model';
 import { ResourceService } from './shared/resource.service';
 
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html'
 })
-export class ResourceComponent implements OnInit {
+export class ResourceComponent implements OnInit, OnDestroy {
 
+  private timeoutId: number;
+
+  public alert: ResourceAlert;
   public selectedResource: Resource;
   public isDetailView = true;
   public resources: Resource[] = [];
@@ -17,6 +20,10 @@ export class ResourceComponent implements OnInit {
 
   ngOnInit() {
     this.getResources();
+  }
+
+  ngOnDestroy() {
+    this.timeoutId && clearTimeout(this.timeoutId);
   }
 
   private getResources() {
@@ -39,6 +46,24 @@ export class ResourceComponent implements OnInit {
 
   private findResourceIndex(resource: Resource): number {
     return this.resources.findIndex(r => r._id === resource._id);
+  }
+
+  private setAlert(type: string, message: string) {
+    this.alert = new ResourceAlert;
+    this.alert[type] = message;
+
+    this.timeoutId = setTimeout(() => this.alert = new ResourceAlert(), 2000)
+  }
+
+  public updateResource = (resource: Resource) => {
+    this.resourceService
+      .updateResource(resource._id, resource)
+      .subscribe(updatedResource => {
+        this.hydrateResources(updatedResource);
+        this.setAlert('success', 'Resource was updated!');
+      }, (error: string) => {
+        this.setAlert('error', error);
+      })
   }
 
   public deleteResource() {
@@ -71,6 +96,7 @@ export class ResourceComponent implements OnInit {
   }
 
   public handleResourceSelect(resource: Resource) {
+    this.alert = new ResourceAlert();
     this.selectResource(resource);
   }
 
