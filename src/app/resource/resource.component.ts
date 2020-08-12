@@ -29,7 +29,7 @@ export class ResourceComponent implements OnInit {
 
   private selectResource(resource: Resource): Resource {
     if (!resource?._id) {
-      this.selectResource = null;
+      this.selectedResource = null;
       return null;
     }
 
@@ -44,8 +44,9 @@ export class ResourceComponent implements OnInit {
   public deleteResource() {
     const isConfirm = confirm('Are you sure?');
 
-    if (!this.activeResource._id) {
+    if (!this.activeResource?._id) {
       alert('No resource selected!');
+      return;
     }
 
     if (isConfirm) {
