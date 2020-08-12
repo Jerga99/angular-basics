@@ -35,6 +35,8 @@ export class ResourceUpdateComponent  {
       .subscribe(updatedResource => {
         this.onResourceUpdate.emit(updatedResource);
         this.setAlert('success', 'Resource was updated!');
+      }, (error: string) => {
+        this.setAlert('error', error);
       })
   }
 }

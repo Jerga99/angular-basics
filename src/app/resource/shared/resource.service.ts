@@ -1,7 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Resource } from './resource.model';
 
 @Injectable({
@@ -11,11 +12,26 @@ export class ResourceService {
 
   constructor(private http: HttpClient) {}
 
+  private handleError(errorRes: HttpErrorResponse): Observable<never> {
+    let message;
+
+    if (errorRes.error instanceof ErrorEvent) {
+      message = errorRes.error.message;
+    } else {
+      message = errorRes.error;
+    }
+
+    // returns observable with error message
+    return throwError(message);
+  }
+
   getResources(): Observable<Resource[]> {
     return this.http.get<Resource[]>('/api/resources')
   }
 
   updateResource(id: string, body: Resource): Observable<Resource> {
-    return this.http.patch<Resource>(`/api/resources/${id}`, body);
+    return this.http
+      .patch<Resource>(`/api/resources/${id}`, body)
+      .pipe(catchError(this.handleError))
   }
 }
