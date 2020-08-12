@@ -18,6 +18,11 @@
         (click)="toggleView()"
         [ngClass]="btnViewClass"
         class="btn btn-sm">{{isDetailView ? 'Edit' : 'Detail'}}</button>
+      <button
+        (click)="deleteResource()"
+        class="btn btn-sm btn-danger ml-2">
+        Delete
+      </button>
     </h4>
     <app-resource-detail
       *ngIf="isDetailView; else updateView"

@@ -37,6 +37,14 @@ export class ResourceComponent implements OnInit {
     return this.selectedResource;
   }
 
+  public deleteResource() {
+    const isConfirm = confirm('Are you sure?');
+
+    if (isConfirm) {
+      alert(`Deleting - ${this.activeResource.title}!`);
+    }
+  }
+
   public hydrateResources(resource: Resource) {
     const index = this.resources.findIndex(r => r._id === resource._id);
     this.resources[index] = resource;
