@@ -1,5 +1,10 @@
 
 
+export class ResourceAlert {
+  success: string;
+  error: string;
+}
+
 export class Resource {
 
   static readonly types = ['book', 'video', 'blog'];

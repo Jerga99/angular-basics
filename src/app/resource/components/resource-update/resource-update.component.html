@@ -1,5 +1,8 @@
 
 <form>
+  <div *ngIf="alert?.success" class="alert alert-success">
+    {{alert.success}}
+  </div>
   <div class="mb-3">
     <label htmlFor="title">Title</label>
     <input

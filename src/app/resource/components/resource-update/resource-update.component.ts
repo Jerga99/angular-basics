@@ -1,6 +1,6 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Resource } from '../../shared/resource.model';
+import { Resource, ResourceAlert } from '../../shared/resource.model';
 import { ResourceService } from '../../shared/resource.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class ResourceUpdateComponent  {
 
   selectedResource: Resource;
   types = Resource.types;
+  alert: ResourceAlert;
 
   @Output() onResourceUpdate = new EventEmitter<Resource>();
 
@@ -21,11 +22,19 @@ export class ResourceUpdateComponent  {
 
   constructor(private resourceService: ResourceService) {}
 
+  private setAlert(type: string, message: string) {
+    this.alert = new ResourceAlert;
+    this.alert[type] = message;
+
+    setTimeout(() => this.alert = new ResourceAlert(), 2000)
+  }
+
   submitForm() {
     this.resourceService
       .updateResource(this.selectedResource._id, this.selectedResource)
       .subscribe(updatedResource => {
         this.onResourceUpdate.emit(updatedResource);
+        this.setAlert('success', 'Resource was updated!');
       })
   }
 }
