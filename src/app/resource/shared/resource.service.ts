@@ -34,4 +34,8 @@ export class ResourceService {
       .patch<Resource>(`/api/resources/${id}`, body)
       .pipe(catchError(this.handleError))
   }
+
+  deleteResource(id: string): Observable<Resource> {
+    return this.http.delete<Resource>(`/api/resources/${id}`);
+  }
 }

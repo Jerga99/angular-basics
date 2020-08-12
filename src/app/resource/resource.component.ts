@@ -37,16 +37,30 @@ export class ResourceComponent implements OnInit {
     return this.selectedResource;
   }
 
+  private findResourceIndex(resource: Resource): number {
+    return this.resources.findIndex(r => r._id === resource._id);
+  }
+
   public deleteResource() {
     const isConfirm = confirm('Are you sure?');
 
+    if (!this.activeResource._id) {
+      alert('No resource selected!');
+    }
+
     if (isConfirm) {
-      alert(`Deleting - ${this.activeResource.title}!`);
+      this.resourceService
+        .deleteResource(this.activeResource._id)
+        .subscribe(dResource => {
+          const index = this.findResourceIndex(dResource);
+          this.resources.splice(index, 1);
+          this.selectResource(this.resources[0]);
+        })
     }
   }
 
   public hydrateResources(resource: Resource) {
-    const index = this.resources.findIndex(r => r._id === resource._id);
+    const index = this.findResourceIndex(resource);
     this.resources[index] = resource;
     this.selectResource(resource);
   }
