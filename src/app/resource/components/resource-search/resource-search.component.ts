@@ -7,6 +7,7 @@ import {
   AfterViewInit } from '@angular/core';
 
 import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-resource-search',
@@ -21,6 +22,7 @@ export class ResourceSearchComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(debounceTime(200))
       .subscribe((e: any) => {
         this.onSearch.emit(e.target.value)
       })
