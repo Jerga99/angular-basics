@@ -16,8 +16,14 @@ export class ResourceNewComponent extends AlertComponent {
     super();
   }
 
-  createResource() {
-
+  createResource = (resource: Resource) => {
+    this.resourceService
+      .createResource(resource)
+      .subscribe(newResource => {
+        this.setAlert('success', 'Resource was created!');
+      }, (error: string) => {
+        this.setAlert('error', error);
+      })
   }
 
 }
