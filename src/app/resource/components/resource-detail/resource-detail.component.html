@@ -21,6 +21,7 @@
           target="_blank">{{resource.link}}</a>
       </div>
       <a
+        *ngIf="isButtonDisplayed"
         routerLink="/resources/{{resource?._id}}"
         class="btn btn-outline-primary">Detail</a>
     </div>

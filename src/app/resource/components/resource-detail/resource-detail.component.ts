@@ -8,4 +8,5 @@ import { Resource } from '../../shared/resource.model';
 })
 export class ResourceDetailCardComponent {
   @Input() resource: Resource;
+  @Input() isButtonDisplayed = true;
 }
