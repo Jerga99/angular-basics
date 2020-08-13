@@ -26,9 +26,10 @@
         </button>
       </ng-container>
     </h4>
-    <app-resource-detail
+    <app-resource-detail-card
       *ngIf="isDetailView; else updateView"
-      [resource]="activeResource"></app-resource-detail>
+      [resource]="activeResource">
+    </app-resource-detail-card>
     <!-- a template reference variable, a reference to a DOM element or a directive  -->
     <ng-template #updateView>
       <app-resource-form

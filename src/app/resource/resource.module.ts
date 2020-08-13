@@ -7,9 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ResourceComponent } from './resource.component';
 import { ResourceSearchComponent } from './components/resource-search/resource-search.component';
 import { ResourceListComponent } from './components/resource-list/resource-list.component';
-import { ResourceDetailComponent } from './components/resource-detail/resource-detail.component';
+import { ResourceDetailCardComponent } from './components/resource-detail/resource-detail.component';
 import { ResourceUpdateComponent } from './components/resource-update/resource-update.component';
 import { ResourceNewComponent } from './resource-new/resource-new.component';
+import { ResourceDetailComponent } from './resource-detail/resource-detail.component';
 import { ResourceOutletComponent } from './resource-outlet.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ResourceComponent },
       { path: 'new', component: ResourceNewComponent },
+      { path: ':id', component: ResourceDetailComponent }
   ]}
 ];
 
@@ -25,10 +27,11 @@ const routes: Routes = [
     ResourceComponent,
     ResourceSearchComponent,
     ResourceListComponent,
-    ResourceDetailComponent,
+    ResourceDetailCardComponent,
     ResourceUpdateComponent,
     ResourceNewComponent,
-    ResourceOutletComponent
+    ResourceOutletComponent,
+    ResourceDetailComponent
   ],
   exports: [
     ResourceComponent
