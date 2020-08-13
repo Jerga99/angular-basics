@@ -29,6 +29,10 @@ export class ResourceService {
     return this.http.get<Resource[]>('/api/resources')
   }
 
+  getResourceById(id: string): Observable<Resource> {
+    return this.http.get<Resource>(`/api/resources/${id}`)
+  }
+
   createResource(body: Resource): Observable<Resource> {
     return this.http
       .post<Resource>(`/api/resources`, body)

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Resource } from '../shared/resource.model';
+import { ResourceService } from '../shared/resource.service';
 
 @Component({
   selector: 'app-resource-detail',
@@ -8,18 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ResourceDetailComponent implements OnInit {
 
-  id: String;
+  resource: Resource;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private resourceService: ResourceService) { }
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
-    //   this.id = params['id'];
-    // })
-
     this.route.paramMap.subscribe(paramMap => {
-      this.id = paramMap.get('id');
+      const id = paramMap.get('id');
+      this.getResource(id);
     })
+  }
+
+  private getResource(id: string) {
+    this.resourceService
+      .getResourceById(id)
+      .subscribe(resource => this.resource = resource)
   }
 
 }
