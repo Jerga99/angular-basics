@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ResourceService } from '../shared/resource.service';
+import { AlertComponent } from '../shared/alert.component';
+import { Resource } from '../shared/resource.model';
 
 @Component({
   selector: 'app-resource-new',
   templateUrl: './resource-new.component.html',
   styleUrls: ['./resource-new.component.scss']
 })
-export class ResourceNewComponent implements OnInit {
+export class ResourceNewComponent extends AlertComponent {
 
-  constructor() { }
+  resource = new Resource();
 
-  ngOnInit(): void {
+  constructor(private resourceService: ResourceService) {
+    super();
+  }
+
+  createResource() {
+
   }
 
 }

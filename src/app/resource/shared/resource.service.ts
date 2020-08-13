@@ -29,6 +29,12 @@ export class ResourceService {
     return this.http.get<Resource[]>('/api/resources')
   }
 
+  createResource(body: Resource): Observable<Resource> {
+    return this.http
+      .post<Resource>(`/api/resources`, body)
+      .pipe(catchError(this.handleError))
+  }
+
   updateResource(id: string, body: Resource): Observable<Resource> {
     return this.http
       .patch<Resource>(`/api/resources/${id}`, body)
