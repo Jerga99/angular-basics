@@ -1,7 +1,7 @@
 <form class="card p-2">
   <div class="input-group">
     <input
-      (keyup)="onSearch.emit($event.target.value)"
+      #searchInput
       type="text"
       class="form-control"
       placeholder="Some title" />
