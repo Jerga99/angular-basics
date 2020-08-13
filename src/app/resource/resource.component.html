@@ -5,7 +5,9 @@
       <span class="text-muted">Your Resources</span>
       <span class="badge badge-secondary badge-pill">{{resourcesCount}}</span>
     </h4>
-    <app-resource-search></app-resource-search>
+    <app-resource-search
+      (onSearch)="handleSearch($event)">
+    </app-resource-search>
     <app-resource-list
       (onResourceClick)="handleResourceSelect($event)"
       [activeId]="activeResource?._id"

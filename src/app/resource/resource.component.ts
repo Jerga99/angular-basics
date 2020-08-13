@@ -49,6 +49,10 @@ export class ResourceComponent extends AlertComponent implements OnInit, OnDestr
     return this.resources.findIndex(r => r._id === resource._id);
   }
 
+  public handleSearch(searchedTitle: string) {
+    console.log(searchedTitle);
+  }
+
   public updateResource = (resource: Resource) => {
     this.resourceService
       .updateResource(resource._id, resource)
