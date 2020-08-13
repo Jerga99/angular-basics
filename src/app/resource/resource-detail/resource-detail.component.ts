@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resource-detail',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResourceDetailComponent implements OnInit {
 
-  constructor() { }
+  id: String;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // this.route.params.subscribe(params => {
+    //   this.id = params['id'];
+    // })
+
+    this.route.paramMap.subscribe(paramMap => {
+      this.id = paramMap.get('id');
+    })
   }
 
 }
