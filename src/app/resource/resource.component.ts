@@ -50,7 +50,17 @@ export class ResourceComponent extends AlertComponent implements OnInit, OnDestr
   }
 
   public handleSearch(searchedTitle: string) {
-    console.log(searchedTitle);
+    if (!searchedTitle) {
+      return this.getResources();
+    }
+
+    this.resourceService
+      .searchResources(searchedTitle)
+      .subscribe(resources => {
+        this.resources = resources;
+        this.selectResource(null);
+        !this.isDetailView ? this.isDetailView = true : null;
+      })
   }
 
   public updateResource = (resource: Resource) => {

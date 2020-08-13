@@ -29,6 +29,10 @@ export class ResourceService {
     return this.http.get<Resource[]>('/api/resources')
   }
 
+  searchResources(searchedTerm: string): Observable<Resource[]> {
+    return this.http.get<Resource[]>(`/api/resources/s/${searchedTerm}`)
+  }
+
   getResourceById(id: string): Observable<Resource> {
     return this.http.get<Resource>(`/api/resources/${id}`)
   }
