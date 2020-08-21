@@ -5,6 +5,10 @@ export class ResourceAlert {
   error: string;
 }
 
+export class ResourceSettings {
+  constructor(public theme: string = '', public fontSize: string = '') {}
+}
+
 export class Resource {
 
   static readonly types = ['book', 'video', 'blog'];
