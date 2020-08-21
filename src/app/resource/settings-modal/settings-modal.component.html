@@ -1,0 +1,8 @@
+
+<button
+  (click)="isOpen = true"
+  class="btn btn-success btn-sm mb-2">Settings</button>
+<app-modal
+  [isOpen]="isOpen"
+  (onClose)="isOpen = false"
+></app-modal>

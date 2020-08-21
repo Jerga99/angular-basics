@@ -12,6 +12,8 @@ import { ResourceUpdateComponent } from './components/resource-update/resource-u
 import { ResourceNewComponent } from './resource-new/resource-new.component';
 import { ResourceDetailComponent } from './resource-detail/resource-detail.component';
 import { ResourceOutletComponent } from './resource-outlet.component';
+import { ModalComponent } from '../shared/modal/modal.component';
+import { SettingsModalComponent } from './settings-modal/settings-modal.component';
 
 const routes: Routes = [
   { path: 'resources', component: ResourceOutletComponent,
@@ -31,7 +33,9 @@ const routes: Routes = [
     ResourceUpdateComponent,
     ResourceNewComponent,
     ResourceOutletComponent,
-    ResourceDetailComponent
+    ResourceDetailComponent,
+    ModalComponent,
+    SettingsModalComponent
   ],
   exports: [
     ResourceComponent
