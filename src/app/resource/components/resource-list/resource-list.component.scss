@@ -4,6 +4,10 @@
   max-height: 350px;
   overflow-y: auto;
 
+  &.dark {
+    color: black;
+  }
+
   &-item {
     cursor: pointer;
   }

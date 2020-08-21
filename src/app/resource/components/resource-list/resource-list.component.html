@@ -1,6 +1,6 @@
 
 
-<ul class="resource-list list-group mb-3">
+<ul class="resource-list list-group mb-3" [ngClass]="theme">
   <li
     *ngFor="let resource of resources"
     (click)="handleResourceSelect(resource)"

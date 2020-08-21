@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Resource } from '../../shared/resource.model';
+import { SettingsService } from '../../shared/settings.service';
 
 @Component({
   selector: 'app-resource-list',
@@ -10,6 +11,12 @@ export class ResourceListComponent  {
   @Input() resources: Resource[];
   @Input() activeId: string;
   @Output() onResourceClick = new EventEmitter<Resource>();
+
+  constructor(private settingsService: SettingsService) {}
+
+  get theme(): string {
+    return this.settingsService.settings?.theme;
+  }
 
   get jsonResources() {
     return JSON.stringify(this.resources);
