@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start-dev": "ng serve",
+    "start": "node server/index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,8 +20,11 @@
     "@angular/platform-browser": "~10.0.6",
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
     "rxjs": "~6.5.5",
+    "serve-static": "^1.14.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
